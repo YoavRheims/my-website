@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>  <html class="ie ie6 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 7]>     <html class="ie ie7 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 8]>     <html class="ie ie8 lte9 lte8"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if gt IE 9]>  <html> <![endif]-->
+<!--[if !IE]><!--> <html>             <!--<![endif]-->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Using CSS Regions With CSS Shapes For A Better Reading Experience</title>
+    <meta name="language" content="en" />
+    <meta name="description" content="Freelance Front-End Web Developer - Lebanon" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="keywords" content="freelancer, front-end web developer, HTML5, CSS3, Lebanon" />  
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!--[if lt IE 9]>
+      <script src="http://css3-mediaqueries-js.googlecode.com/files/css3-mediaqueries.js"></script>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Page Speed Insights requires that Google Fonts be loaded inline for faster pages -->
+    <style>
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: normal;
+          font-weight: 300;
+          src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGNbE_oMaV8t2eFeISPpzbdE.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: normal;
+          font-weight: 700;
+          src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          font-weight: 300;
+          src: local('Source Sans Pro Light Italic'), local('SourceSansPro-LightIt'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/fpTVHK8qsXbIeTHTrnQH6GGomRtBD2u8FwSY4jjlmeA.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          font-weight: 400;
+          src: local('Source Sans Pro Italic'), local('SourceSansPro-It'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/M2Jd71oPJhLKp0zdtTvoMzNrcjQuD0pTu1za2FULaMs.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          font-weight: 700;
+          src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldIt'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/fpTVHK8qsXbIeTHTrnQH6Nog-We9VNve39Jr4Vs_aDc.woff) format('woff');
+        }
+    </style>
+    <!-- Google web fonts work in IE only this way: each font in its own link -->
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300" /> 
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400" /> 
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600" /> 
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:700italic" /> 
+    <![endif]-->
+    <link rel="stylesheet" href="/css/screen.css" />
+  </head>
+  <body>
+    <header role="banner" class="clearfix main-header">
+      <div class="wrapper clearfix">
+        <a href="http://sarasoueidan.com/index.html" class="logo">
+          <img src="/images/logo.png" alt="Sara Soueidan" />
+        </a>
+        <nav role="navigation" class="main-nav clearfix">
+          <ul class="clearfix">
+            <li><a href="/index.html"  >Home</a></li><!--
+            --><li><a href="/articles.html"  >Articles</a></li><!--
+            --><li><a href="/about.html"  >About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header> 
+
+
+
+        <div class="full-width"> 
+      <div class="hero" style="background-color: ">
+        <div class="wrapper">
+          <img src="/images/css-regions-with-shapes-for-readability-header.png"/>
+        </div>
+      </div>
+   
+      <div class="wrapper clearfix"> 
+        <aside class="left-sidebar"></aside>
+
+        <section class="main post-wrapper clearfix">
+          <h1 class="post-title">Using CSS Regions With CSS Shapes For A Better Reading Experience</h1>
+          <p class="post-meta">
+            Published 05 Dec 2013
+          </p>
+          
+          <div class="buttons clearfix">
+            
+            <a href="/demos/fragmented-magazine-layout"  class="button button--blog-post">View Live Demo</a>
+            
+            
+            <a href="http://github.com/sarasoueidan/fragmented-magazine-layout"  class="button button--blog-post">Find Project on Github</a>
+            
+          </div>
+          
+
+          <p class="size-2x">
+    Using <a href="http://dev.w3.org/csswg/css-shapes/">CSS shapes</a> we can flow our content in non-rectangular areas. And sometimes we want to be able to flow our content into multiple custom-shaped areas inside an element. If you've read my <a href="http://sarasoueidan.com/blog/css-shapes/index.html">previous article</a>, you already know that this can be done with CSS Shapes, by using an image with alpha transparency with multiple shapes defined in it, and letting the browser extract the content's float areas from it. As appealing as this may sound and as creative as we can get with our shapes, flowing the text into multiple areas can easily make our content almost completely unreadable.
+</p>
+
+<p class="note">
+    This article assumes that you're already familiar with the basics of CSS Shapes and <a href="http://dev.w3.org/csswg/css-regions/">CSS Regions</a>. I've recently written <a href="http://sarasoueidan.com/blog/css-shapes/index.html">an in-depth comprehensive article about creating non-rectangular layouts with CSS shapes</a>, which is perfect for getting you up and running with CSS shapes.
+</p>
+
+<div class="note warning">
+  Notes: 
+  <ul>
+    <li>
+      This article's demo uses the
+      <code>shape-inside</code> property, which will be temporarily <a href="https://bugs.webkit.org/show_bug.cgi?id=130698">removed from Webkit</a> and <a href="https://codereview.chromium.org/209443007/">Blink</a>. So, for the time being, this article will only show screenshots of how the demo works when <code>shape-inside</code> is implemented again.
+    </li>
+    <li>
+      CSS Regions have also been <a href="http://www.cnet.com/news/reversing-course-google-rejects-adobe-web-publishing-tech/">dropped from Blink</a>, so they currently don't work in Chrome.
+    </li>
+  </ul>
+</div>
+
+<p>CSS shapes can introduce a serious accessibility problem when not used wisely. It&#39;s great to achieve all kinds of creative layouts with custom shapes, but the first and most important thing to keep in mind is that the content is there to be read, so a designer must think accessibility and readability first, then appealing layout second.</p>
+
+<p>To explain this better, let&#39;s get into an example of when CSS shapes can cause a really bad reading experience. Although, to be fair, it&#39;s not CSS shapes that does that, it&#39;s the decision the designer makes, but you know what I mean.</p>
+
+<h3>The Problem: Multiple CSS Shapes Making Text Unreadable</h3>
+
+<p>A few days ago I <a href="https://twitter.com/SaraSoueidan/status/407909116862943232">tweeted</a> about a <a href="http://www.behance.net/gallery/Magazine-Feature-Magazine/9812813">&quot;fragmented&quot; magazine layout</a> I made using CSS Shapes and <a href="http://www.w3.org/TR/css-masking/">CSS Masks</a>. The layout took literally less than 2 minutes to create after the mask images were ready (I made those using Photoshop). But after finishing the layout, I realized that, even though it looked quite interesting and creative, it was anything but readable.</p>
+
+<p>Here&#39;s how the layout looked:</p>
+
+<figure>
+   <img src="/images/old-demo.png" alt="Fragmented Magazine Layout Demo Screenshot">
+   <figcaption>Fragmented Magazine Layout created with CSS Shapes and Masks</figcaption>
+</figure>
+
+<p>The left part of the layout, where the text is flowing in 3 custom-shaped areas, is where the problem occurred. </p>
+
+<p>As with content masking, you can imagine your content as one layer and the mask as another; the content will be &quot;painted&quot; only where the mask is opaque, assuming that we&#39;re working with an alpha mask which has only fully black and fully transparent areas. In this case, the fully black areas determine the areas where the content will be visible. And in terms of CSS shapes, the black areas determine the flow areas where our text will flow.</p>
+
+<p>This is the mask I used to create the 3 flow areas for the text:</p>
+
+<figure>
+  <img src="/images/fragments-text-mask.png" alt="Fragmented Magazine Layout Mask Defining Flow Areas">
+  <figcaption>The alpha channel mask used to define the flow areas for the text container</figcaption>
+</figure>
+
+<p>Now the problem occurs from the way the browser&#39;s layout engine works to fill these areas with text. When the browser flows the text into the shapes it moves down an element line by line, and starts writing the text in the text&#39;s flow areas, which, when you&#39;re using a mask image, are the areas of the element covered by the black areas of the mask. For regular rectangular elements, i.e. those that don&#39;t have any CSS shape defined on them, that is perfectly fine: just move down the element one line after another, and type the text on those lines. But when an element&#39;s flow area changes, things can easily get messy.</p>
+
+<p>The browser starts with the first line on an element, and prints the text on that line <em><strong>only where the line passes through a defined flow area (one of the black areas)</strong></em>. So, what happens is that words will end up &quot;scattered&quot; on every line, and the lines divided into several &quot;fragments&quot;  depending on the number of flow areas passing through the line. A reader&#39;s eye will have to &quot;jump&quot; from area to area to read the fragments that make up a line.</p>
+
+<figure>
+  <img src="/images/fragments-text-mask-shapes-flow.png" alt="Content flow into defined flow areas with CSS Shapes">
+  <figcaption>The horizontal "fragmented" flow of text inside multiple flow areas defined by CSS shapes</figcaption>
+</figure>
+
+<p>As you can see in the image above, if you start reading a line, <strong>your eyes have to jump from area to area for every line</strong>, which, after a few of lines, becomes impossible to do, at least for me.</p>
+
+<p>When I first started experimenting with CSS shapes I expected the text to flow in each of these custom-shaped areas the same way it does in CSS regions: I expected the browser to treat CSS Shapes&#39; flow areas the same way it treats CSS regions, but it does not. What we would normally want to do, is have the text flow in the individual areas, moving to one area after another one has been filled with content.</p>
+
+<p>One way to achieve this (filling areas one after another) is by using CSS regions to create any number of flow areas we want, and then giving each region a custom shape inside it using the <code>shape-inside</code> property. So, for the above mask for example, which has 3 shapes inside it which define 3 flow areas, we will define each of these areas as a region, and then give each region a custom shape so that text flows inside it the way we want it to. This way, the browser will fill the first area (first region) with text, and then when it&#39;s full, it will move into the second region after the first one&#39;s been filled, and so on. This way, the text can be easily read inside each region (as long as you&#39;re not using some crazy shape that will make text unreadable in all cases), as your eyes won&#39;t have to jump between regions for every line.</p>
+
+<figure>
+  <img src="/images/fragments-text-mask-regions-flow.png" alt="Content flow into flow areas defined with CSS Regions and shapes">
+  <figcaption>Using CSS regions to define the three areas, text will fill each region before flowing into the next one, making reading a lot easier</figcaption>
+</figure>
+
+<p>Now let&#39;s change the above demo I made by introducing CSS regions into it and see how that affects the readability of the layout.</p>
+
+<h3>The Solution: Introducing CSS Regions Into The Layout</h3>
+
+<p>What we&#39;re going to do, is create three regions inside our text container, and then give each region a shape using <code>shape-inside</code> so that the text flows inside it in a non-rectangular manner.</p>
+
+<p>The right side of the demo, which is a &quot;fragmented&quot; image, is created using CSS masks. A mask is applied to the element, which will &quot;erase&quot; parts of the image where the mask is transparent. We&#39;ll get to this part at the end of this section.</p>
+
+<p>First, we&#39;re going to go over the markup for the two &quot;pages&quot;. The page with a class name <code>.text</code> is the left page with the text inside it. Inside this page, we&#39;re going to define 3 regions, and a <code>.content</code> container which will contain the text that we want to flow into these regions.</p>
+
+<p>So, the 3 regions are initially empty, and via CSS, we&#39;re going to fill them with the text contained in the <code>.content</code> element.</p>
+
+<pre class="brush:html">
+&lt;div class="magazine"&gt;
+    &lt;div class="page text"&gt;
+        &lt;div class="content"&gt;
+            Good design should be used solely as information that acknowledges its very difficult to leave room for the consumer with promises that part of design is only lousy design emphasises the intellectual side .... 
+            &lt;!--...--&gt;
+        &lt;/div&gt;
+        &lt;div class="region region-1"&gt;&lt;/div&gt;
+        &lt;div class="region region-2"&gt;&lt;/div&gt;
+        &lt;div class="region region-3"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="page photo"&gt;
+        &lt;img src="images/bg.jpg" alt="Photo of a Sea"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>Now that we have our markup ready, we&#39;ll start by defining some general styles before we get into the relevant CSS. We&#39;ll be giving all the elements fixed dimensions; both CSS shapes and CSS regions require an element to have fixed dimensions to work.</p>
+
+<pre class="brush:css">
+.magazine {
+    height: 700px;
+    width: 1300px;
+    font-size: .8em;
+    margin: 1em auto;
+    background-color: #fff;
+    font-family: "Nunito", sans-serif;
+}
+.page {
+    width: 710px;
+    height: 700px;
+    float: left;
+    overflow: hidden; 
+    font-size: .9em;
+}
+.photo {
+    float: right;
+    width:590px;
+}
+.photo img{
+    width: 100%;
+    height: 100%;
+    /* .. */
+}
+.text {
+    /* We're justifying the text so that it fills the entire line so that the shapes are more "defined" by their content */
+    text-align: justify;
+    padding: 1em;
+}
+.region {
+    /* must specify dimensions on regions otherwise they won't be filled with text */
+    width: 220px;
+    height: 670px;
+    float: left;
+    padding: .5em;
+}
+</pre>
+
+<p>With these styles set, we can now flow our text content into our regions using CSS&#39;s <code>flow-from</code> and <code>flow-into</code> properties. I&#39;ll be using the <code>-webkit-</code> prefix as the demo will only work in webkit browsers at this time.</p>
+
+<pre class="brush:css">
+.content {
+    -webkit-flow-into: pocket;
+}
+.region {
+    -webkit-flow-from: pocket;
+}
+</pre>
+
+<p>That&#39;s all you need to flow the text into the regions. The demo would look like the following screenshot. I&#39;ve colored the regions&#39; background so that they are more visible. And for the time being, you can ignore the right side of the page with the fragmented image effect. Like I mentioned earlier, we&#39;ll get to that by the end of this section.</p>
+
+<figure>
+  <img src="/images/fragmented-magazine-regions-show.png" alt="Screenshot of Demo with Regions and Mask applied">
+  <figcaption>Screenshot of the demo when text flows inside the regions before applying the shapes to them</figcaption>
+</figure>
+
+<p>The text flows from one region to another starting from the left column to the right, which is exactly what we set out to achieve. Now what we want to do next is apply the same non-rectangular shapes to our 3 columns (regions) as those we saw in the mask used above, so that the end result looks like the demo we want to improve.</p>
+
+<p>Because we want to change the flow of text <em>inside</em> the regions, we&#39;re going to use CSS&#39;s <code>shape-inside</codE> property to change the shape of the flow area inside the regions. There are two ways we could define our shapes: using an image with an alpha channel like we did in the initial demo before we introduced regions, or by creating these shapes using the <code>polygon()</code> shape function.</p>
+
+<p>Because each region will have only one flow area inside it which is a simple polygonal shape, we&#39;re going to use the <code>polygon()</code> function instead of creating 3 images for the 3 regions (the image previously used in the demo to define the 3 flow areas can be divided into 3 masks using Photoshop, each mask containing one of the shapes inside the image).</p>
+
+<pre class="brush:css">
+.region-1 {
+    shape-inside: polygon(80px 0px, 150px 0, 190px 200px, 130px 400px, 200px 550px, 200px 670px, 30px 670px, 0px 100px); 
+}
+.region-2 {
+    shape-inside: polygon(150px 0px, 210px 170px, 150px 300px, 220px 670px, 50px 670px, 5px 430px, 40px 270px, 0px 60px); 
+}
+.region-3 {
+    shape-inside: polygon(190px 0px, 210px 350px, 150px 610px, 140px 670px, 0px 370px, 40px 160px, 10px 40px);
+}
+</pre>
+
+<p>And now the text flows inside our regions in non-rectangular shapes:</p>
+
+<figure>
+   <img src="/images/fragmented-magazine-regions-shaped.png" alt="Screenshot of Demo with Shapes applied to Regions">
+   <figcaption>Screenshot of the demo when shapes are applied to the regions</figcaption>
+</figure>
+
+<p>With this result, it&#39;s a lot easier to read the text than it was in the intial demo. Your eyes can move down a column and then move to the next once it&#39;s done with the first.</p>
+
+<p>Nonetheless, it&#39;s absolutely necessary that a designer always design shapes that don&#39;t strain the eyes. There&#39;s probably a good reason why rectangular reading areas are the most comfortable to read in, and when designers decide to think outside the box (pun intended), it&#39;s important to remember not to compromise readability and sacrifice a good user experience for beautiful comps.</p>
+
+<p>With that said, this is how the demo looks:</p>
+
+<figure>
+   <img src="/images/css-regions-with-shapes-for-readability-header.png" alt="Screenshot of the final demo">
+   <figcaption>Screenshot of the final demo</figcaption>
+</figure>
+
+<p>And this is how CSS regions can help create a fairly better reading experience when used with CSS shapes. It would be great if browsers filled the CSS shapes the same way it filled CSS regions, but because it&#39;s not a simple task to just change the layout algorithm, we can always use CSS regions to get that result.</p>
+
+<h3>Creating The &quot;Fragmented&quot; Photo Effect with CSS Masks</h3>
+
+<p>Last but not least, we&#39;re going to use CSS masks to mask parts of the image in the <code>.photo</code> page, to give it that &quot;fragmented&quot; effect. The mask used to create this effect on the image looks like so:</p>
+
+<figure>
+  <img src="/images/fragments-mask.png" alt="Mask used to create the fragmented effect on the image">
+  <figcaption>Mask with alpha channel used to create the "fragmented" effect on the image</figcaption>
+</figure>
+
+<p>The above mask is an image with an alpha channel, where the opaque areas define where the content will be visible, and the transparent areas are the areas where the content will be &quot;erased&quot;. You can notice that it&#39;s obviously a messy mask :P because that&#39;s what happens when I try to &quot;draw&quot; with a mouse! But then again, it kind of emphasizes that &quot;torn&quot; and &quot;fragmented&quot; effect on the image, which is nice. =)</p>
+
+<pre class="brush:css">
+.photo img{
+    /* ... */
+
+    /* mask applied to the image. At this time, only webkit browsers support CSS masks with a webkit prefix */
+    -webkit-mask-image: url(../images/fragments-mask.png);
+}
+</pre>
+
+<h3>Final Words</h3>
+
+<p>CSS Shapes will be one of the best things to happen to design on the web, but as we&#39;ve always learned: with great power comes great repsonsibility. It&#39;s <a href="http://blogs.adobe.com/webplatform/2013/12/04/css-shapes-in-last-call/">estimated</a> that in a year from now many  browsers will have implemented CSS shapes, so it&#39;s great to start experimenting with them from now. The more you experiment the more you can help find bugs to fix them before all browsers implement them.</p>
+
+<p>And finally, I hope you enjoyed reading this article and found it useful. Thank you for reading.</p>
+
+
+          
+          <div class="buttons clearfix">
+            
+            <a href="/demos/fragmented-magazine-layout"  class="button button--blog-post">View Live Demo</a>
+            
+            
+            <a href="http://github.com/sarasoueidan/fragmented-magazine-layout"  class="button button--blog-post">Find Project on Github</a>
+            
+          </div>
+          
+            
+        </section> 
+
+      <aside class="right-sidebar">
+    <div class="ad-wrapper">
+        <script type="text/javascript" src="http://cdn.adpacks.com/adpacks.js?legacyid=1287837&zoneid=1386&key=13ef3eaa0a08baab445eed65885ebad2&serve=C6SD52Y&placement=wwwsarasoueidancom&circle=dev" id="_adpacks_js"></script>
+    </div>
+</aside>
+
+      </div><!--end wrapper-->
+    </div>
+
+
+<footer role="contentinfo" class="main-footer clearfix content-wrapper">
+      <div class="wrapper clearfix">
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="http://twitter.com/SaraSoueidan">Twitter</a></li>
+              <li><a href="http://github.com/SaraSoueidan">Github</a></li>
+              <li><a href="http://feeds.feedburner.com/sarasoueidan">RSS</a></li>
+              <li><a href="mailto:contact@sarasoueidan.com">contact@sarasoueidan.com</a></li>
+            </ul>
+          </nav>
+          <p class="copyright">
+            &copy; Sara Soueidan 2014 • <a href="http://twitter.com/SaraSoueidan">@SaraSoueidan</a>
+          </p>
+      </div><!--end footer wrapper-->
+    </footer>
+    
+    <script type="text/javascript" src="/js/syntaxhighlighter.js"></script>
+    <!-- Google Analytics -->
+    <script async type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37248572-1']);
+        _gaq.push(['_setDomainName', 'sarasoueidan.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>    
+  </body>
+</html>

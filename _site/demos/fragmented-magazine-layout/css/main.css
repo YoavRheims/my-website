@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  min-height: 100%;
+  font-size: 100%;
+  overflow-x: hidden;
+  background-color: #eee;
+  font-size: 100%;
+}
+header {
+  position: fixed;
+  top:0; right:0; left:0;
+  z-index: 2;
+  height:2em;
+  color: #eee;
+  background-color: slategrey;
+  opacity: .9;
+  width: 100%;
+  font-size: .9em;
+  line-height: 2em;
+  padding: 0 30px;
+}
+header p {
+  float: right;
+  margin: 0;
+}
+header a {
+  color: inherit;
+  float: left;
+  text-decoration: none;
+}
+header a:hover{
+  color: #fff;
+}
+.magazine {
+  height: 700px;
+  width: 1300px;
+  font-size: .8em;
+  margin: 2.5em auto;
+  background-color: #fff;
+  font-family: "Nunito", sans-serif;
+}
+.page {
+  width: 710px;
+  height: 700px;
+  float: left;
+  overflow: hidden; 
+  font-size: .9em;
+}
+.photo {
+  float: right;
+  width:590px;
+}
+.photo img{
+  width: 100%;
+  -webkit-mask-image: url(../images/fragments-mask.png);
+  mask-image: url(../images/fragments-mask.png);
+  height: 100%;
+}
+.text {
+  text-align: justify;
+  padding: 1em;
+}
+.region {
+  width: 220px;
+  height: 670px;
+  float:left;
+  padding: .5em;
+}
+.region-1 {
+  /* prefixed version for stable Chrome */
+  -webkit-shape-inside: polygon(80px 0px, 150px 0, 190px 200px, 130px 400px, 200px 550px, 200px 670px, 30px 670px, 0px 100px); 
+  shape-inside: polygon(80px 0px, 150px 0, 190px 200px, 130px 400px, 200px 550px, 200px 670px, 30px 670px, 0px 100px); 
+}
+.region-2 {
+  -webkit-shape-inside: polygon(150px 0px, 210px 170px, 150px 300px, 220px 670px, 50px 670px, 5px 430px, 40px 270px, 0px 60px); 
+  shape-inside: polygon(150px 0px, 210px 170px, 150px 300px, 220px 670px, 50px 670px, 5px 430px, 40px 270px, 0px 60px); 
+}
+.region-3 {
+  -webkit-shape-inside: polygon(190px 0px, 210px 350px, 150px 610px, 140px 670px, 0px 370px, 40px 160px, 10px 40px);
+  shape-inside: polygon(190px 0px, 210px 350px, 150px 610px, 140px 670px, 0px 370px, 40px 160px, 10px 40px);
+}
+.content {
+  -webkit-flow-into: pocket;
+  flow-into: pocket;
+}
+.region {
+  -webkit-flow-from: pocket;
+  flow-from: pocket;
+}
