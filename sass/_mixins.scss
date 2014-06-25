@@ -1,0 +1,29 @@
+//rem font size mixin
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+//webkit scrollbar styling mixin by Hugo Giraudel
+@mixin scrollbar($size, $primary, $secondary: lighten($primary, 25%)) {
+  ::-webkit-scrollbar {
+		width:  $size;
+		height: $size;
+	}
+ 
+	::-webkit-scrollbar-thumb {
+		background: $primary;
+	}
+ 
+	::-webkit-scrollbar-track {
+		background: $secondary;
+	}
+  
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $primary;
+    scrollbar-track-color: $secondary;
+  }
+}
+
+

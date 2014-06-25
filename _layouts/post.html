@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+    <div class="full-width"> 
+      <div class="hero" style="background-color: ">
+        <div class="wrapper">
+          <img src="{{ site.url }}/images/{{ page.image }}"/>
+        </div>
+      </div>
+   
+      <div class="wrapper clearfix"> 
+        <aside class="left-sidebar"></aside>
+
+        <section class="main post-wrapper clearfix">
+          <h1 class="post-title">{{ page.title }}</h1>
+          <p class="post-meta">
+            Published {{ page.date | date_to_string }}
+          </p>
+          {% if page.demo or page.repo %}
+          <div class="buttons clearfix">
+            {% if page.demo %}
+            <a href="{{ site.url }}/demos/{{ page.demo }}"  class="button button--blog-post">View Live Demo</a>
+            {% endif %}
+            {% if page.repo %}
+            <a href="http://github.com/sarasoueidan/{{ page.repo }}"  class="button button--blog-post">Find Project on Github</a>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          {{ content }}
+
+          {% if page.demo or page.repo %}
+          <div class="buttons clearfix">
+            {% if page.demo %}
+            <a href="{{ site.url }}/demos/{{ page.demo }}"  class="button button--blog-post">View Live Demo</a>
+            {% endif %}
+            {% if page.repo %}
+            <a href="http://github.com/sarasoueidan/{{ page.repo }}"  class="button button--blog-post">Find Project on Github</a>
+            {% endif %}
+          </div>
+          {% endif %}
+            
+        </section> 
+
+      {% include right-sidebar.html %}
+
+      </div><!--end wrapper-->
+    </div>

@@ -1,0 +1,110 @@
+@media screen and (max-width:71.875em) {/*1150px/16px*/
+  html {
+    font-size: 67%;
+  }
+}
+@media screen and (max-width:64em) {/*1050/16px*/
+  body .one .bsa_it_ad .bsa_it_i { 
+    padding: 0; 
+    float: none;
+    clear: both;
+    margin: 0 0 5px 0; 
+  }
+  .intro {
+    display: none;
+  }
+
+  .pushed-down{
+    margin-top: 0;
+  }
+
+}
+@media screen and (max-width:61.25em) {/*980/16px*/
+  html {
+    font-size: 66%;
+  }
+}
+@media screen and (max-width:44em) {
+  html {
+    font-size: 61%;
+  }
+  
+  .logo {
+    float: none;
+    display: inline-block;
+  }
+
+  body {
+    padding-top: 0;
+  }
+  .main-header {
+    position: relative;
+    padding: 1em 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+  .main-nav {
+    background-color: #000; color: #eee;
+    text-align: center;
+    width: 100%;
+    transition: all .3s ease;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+
+    ul {
+      margin: 0;
+      display: block;
+      text-align: center;
+      border-top: 1px solid #222;
+
+      li {
+        border-right: 1px solid #222;
+        width: 33%;
+        
+        a {
+          padding: .8em .5em;
+        }
+        a:hover, a:active, &:focus, a.active{
+          background-color: #111;
+          color: #fff;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+    
+  .post{
+    width: 100%;
+  }
+  .footer-nav, .copyright {
+    float: none;
+    display: block; 
+  }
+}
+
+@media screen and (max-width:34.375em) {/*550*/
+  html {
+    font-size: 58%;
+  }
+  .button--blog-post {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 26.875em) {/*430px*/
+  .intro {
+    height: 200px;
+  }
+}
+@media screen and (max-width:20.3125em) {/*325px*/
+  html {
+    font-size: 54%;
+  }
+}
+
+
+

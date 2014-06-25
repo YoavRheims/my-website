@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<rss version="2.0">
+
+<channel>
+  <title>SaraSoueidan.com</title>
+  <link>http://sarasoueidan.com</link>
+  <description>Front-end development tutorials and design articles.</description>
+  <category>Web development</category>
+  <language>en-us</language>
+  
+  <item>
+    <title>Using CSS Regions with CSS Shapes For A Better Reading Experience</title>
+    <link>http://sarasoueidan.com/blog/css-regions-with-shapes-for-readability/index.html</link>
+    <description>An article about how introducing CSS regions into layouts using CSS shapes can help solve the readability and accessibility problem that may occur due to the creative shapes defined on the layout.</description>
+  </item>
+  <item>
+    <title>Creating Non-Rectangular Layouts with CSS Shapes</title>
+    <link>http://sarasoueidan.com/blog/css-shapes</link>
+    <description>An article about declaring and using the new CSS Shapes and Exclusions technologies to create print-like magazine layouts.</description>
+  </item>
+  <item>
+    <title>Navicon Transformicons: Animated Navigation Icons with CSS Transforms</title>
+    <link>http://sarasoueidan.com/blog/navicon-transformicons</link>
+    <description>A tutorial on using CSS transforms to create animated Navigation Icons. Collabor8ation post by Bennett Feely and myself.</description>
+  </item>
+  <item>
+    <title>Draggable Metro App Showcase</title>
+    <link>http://sarasoueidan.com/blog/draggable-metro-app-showcase</link>
+    <description>In this article I'm going to share with you an interactive showcase concept for showcasing metro-style apps.</description>
+  </item>
+  <item>
+    <title>S Gallery: A Responsive jQuery Gallery Plugin with CSS3 Animations</title>
+    <link>http://sarasoueidan.com/blog/s-gallery-responsive-jquery-gallery-plugin-with-css3-animations</link>
+    <description> In this article I'm going to share with you a responsive jQuery image gallery with CSS3 animations inspired by SONY's flash products gallery.</description>
+  </item>
+  <item>
+    <title>UI Transitions: Creative Add/Remove Effects for List Item with CSS3 Animations</title>
+    <link>http://sarasoueidan.com/blog/ui-transitions-creative-add-remove-effects-for-list-items</link>
+    <description>In this tutorial we're going to create some nice animations and transitions for adding items to and removing items from lists.</description>
+  </item>
+  <item>
+    <title>Horizontal Portfolio Layout with CSS3 Animations and jQuery</title>
+    <link>http://blog.sarasoueidan.com/horizontal-portfolio-layout</link>
+    <description>In this tutorial we're going to create a simple horizontal portfolio with neat hover and scrolling effects using CSS3 animations and jQuery to add a simple panning effect to the images included in the portfolio items. </description>
+  </item>
+  <item>
+    <title>Lessons from the "Seductive Interaction Design" Book</title>
+    <link>http://blog.sarasoueidan.com/lessons-from-seductive-interaction-design-book/</link>
+    <description>In this article I share with you some valuable UX design lessons and insights I learned from an amazing book called "Seductive Interaction Design" by Stephen Anderson. The book talks about how we can turn online user experiences into more human, enjoyable, and fun experiences by understanding people and applying psychological principles to the interaction between people and interactive devices to make them "fall in love" with your website/application. </description>
+  </item>
+  <item>
+    <title>How to Create Windows-8-like Animations with CSS3 and jQuer</title>
+    <link>http://blog.sarasoueidan.com/windows8-animations/</link>
+    <description>A tutorial in which I show you how to use CSS 3D transforms, animations, and transitions along with some jQuery to some create neat 3D effects like the ones built into the Windows 8 dashboard.</description>
+  </item>
+ 
+</channel>
+
+</rss>

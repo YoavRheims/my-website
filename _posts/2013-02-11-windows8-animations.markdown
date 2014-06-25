@@ -1,0 +1,644 @@
+---
+layout: post
+title:  "How to Create Windows-8-like animations with CSS3 and jQuery"
+image: "windows8-animations-header.png"
+demo: "windows8-animations"
+repo: "windows8-animations"
+---
+
+<p class="size-2x">I have recently realized that CSS3 3D transforms have been out there for quite a long time now and yet I haven't experimented with them yet. I have also been using Windows 8 for a while now, and the first thing that struck me as impressive about it was the transitions and animations built into the dashboard, so I thought it would be really cool if  my first experiment with CSS 3D transforms would be to recreate those animations and effects. So, here goes the tutorial on how I did that.
+</p>
+
+<p class="note warning">Please note that this demo works only in <a href="http://caniuse.com/#feat=transforms3d">browsers that support</a> the CSS3 properties used. </p>
+
+<p class="note">For the sake of brevity in the example code, I am using the un-prefixed CSS properties, but you will find the prefixes in the downloadeable source code on Github.</p>
+
+### The Markup
+
+<p>The demo's structure is pretty simple: The dashboard is a list of tiles, of three sizes, small, big, and 2xbig, floated inside 3 columns. And then there are  their corresponding "pages". A page is an overlay which opens when u click on one of the boxes on the dashboard. It represents an app on desktop, with each of the tiles being the shortcut to that app.</p>
+
+<p>Each tile will open up a corresponding page. There are two kinds of page transitions included in the Windows 8 dashboard: one that opens the page in a 3D rotating effect from the right of the screen, and one that slides the page in and back to the left. We will define a class name for each type of page as <code> s-page</code> for the pages that slide from and to the left, and <code> r-page</code> for pages that rotate open from the right.</p>
+
+<p>Now, for each tile, we need to specify what type of page it opens (depending on the effect you want for that page). We will define the type of the page for each tile in a custom data attribute called <code> data-page-type</code>, this will take care of applying the right class names triggering the right animations later on.</p>
+
+<p>Each page should also have a name. The page name for a certain app will be different from that of another app, so the "Skype" tile opens up a page called "skype-app" for example. I've used only two page names in this example, which are repeated for all tiles, and used a <code> custom-page</code> name for the last tile for sake of example. You'll probably have to add a different page for each tile, hence a different page name specified in every tile.</p>
+
+<p>Here's the markup for the whole dashboard (tiles and pages):</p>
+
+<pre class="brush:html;" style="max-height:600px; overflow-y: scroll;">
+            &lt;div class="demo-wrapper"&gt;
+              &lt;!-- classnames for the pages should include: 1) type of page 2) page name--&gt;
+               &lt;div class="s-page random-restored-page"&gt;
+                  &lt;div class="page-content"&gt;
+                    &lt;h2 class="page-title"&gt;Some minimized App&lt;/h2&gt;
+                    &lt;div class="close-button s-close-button"&gt;x&lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="s-page custom-page"&gt;
+                  &lt;div class="page-content"&gt;
+                    &lt;h2 class="page-title"&gt;Thank You!&lt;/h2&gt;
+                    &lt;div class="close-button s-close-button"&gt;x&lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="r-page random-r-page"&gt;
+                  &lt;div class="page-content"&gt;
+                    &lt;h2 class="page-title"&gt;App Screen&lt;/h2&gt;
+                    &lt;p&gt;Chew iPad power cord chew iPad power cord attack feet chase mice leave dead animals as gifts and stick butt in face chew iPad power cord. Chase mice. Run in circles use lap as chair why must they do that. Intrigued by the shower destroy couch leave hair everywhere sleep on keyboard chew iPad power cord. Use lap as chair. Missing until dinner time stand in front of the computer screen, intently sniff hand. Find something else more interesting. Destroy couch play time so inspect anything brought into the house hate dog burrow under covers. Sleep on keyboard destroy couch so hate dog so hide when guests come over. Chase mice destroy couch lick butt throwup on your pillow use lap as chair yet intrigued by the shower but climb leg. Stare at ceiling make muffins or hunt anything that moves claw drapes. Intently sniff hand intrigued by the shower. Why must they do that. Cat snacks leave dead animals as gifts or inspect anything brought into the house sweet beast so stare at ceiling give attitude. Flop over claw drapes but sun bathe lick butt, and chase mice. Rub face on everything lick butt leave hair everywhere lick butt, missing until dinner time for use lap as chair lick butt. Make muffins leave dead animals as gifts play time. Chew foot intrigued by the shower stare at ceiling inspect anything brought into the house yet hopped up on goofballs. 
+
+                    Hunt anything that moves intently sniff hand for hunt anything that moves play time. Chew foot climb leg throwup on your pillow so lick butt yet make muffins hate dog. Intrigued by the shower. Intently sniff hand shake treat bag. Cat snacks burrow under covers make muffins but all of a sudden go crazy find something else more interesting. Flop over chase mice. Give attitude. Inspect anything brought into the house. Stick butt in face sun bathe so find something else more interesting and intrigued by the shower. Rub face on everything use lap as chair. 
+
+                    Under the bed claw drapes chase mice but leave hair everywhere yet make muffins yet claw drapes. Use lap as chair. Find something else more interesting stretch for under the bed. Nap all day intrigued by the shower, hate dog sweet beast intently sniff hand so hate dog nap all day. Swat at dog hide when guests come over and mark territory chase mice for cat snacks. Use lap as chair. Lick butt throwup on your pillow need to chase tail. 
+
+                    Mark territory. Stick butt in face shake treat bag yet hunt anything that moves, yet hopped up on goofballs yet stare at ceiling under the bed. Give attitude chase imaginary bugs stretch so hunt anything that moves so hide when guests come over but intrigued by the shower find something else more interesting. Make muffins behind the couch for chew foot. Sweet beast flop over but throwup on your pillow. Intently sniff hand use lap as chair and missing until dinner time and chase imaginary bugs. 
+                    &lt;/p&gt;
+                  &lt;/div&gt;
+                  
+                  &lt;div class="close-button r-close-button"&gt;x&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;!--each tile should specify what page type it opens (to determine which animation) and the corresponding page name it should open--&gt;
+                &lt;div class="dashboard clearfix"&gt;
+                  &lt;ul class="tiles"&gt;
+                    &lt;div class="col1 clearfix"&gt;
+                      &lt;li class="tile tile-big tile-1 slideTextUp" data-page-type="r-page" data-page-name="random-r-page"&gt;
+                        &lt;div&gt;&lt;p&gt;This tile's content slides up&lt;/p&gt;&lt;/div&gt;
+                        &lt;div&gt;&lt;p&gt;View all tasks&lt;/p&gt;&lt;/div&gt;
+                      &lt;/li&gt;
+                      &lt;li class="tile tile-small tile tile-2 slideTextRight" data-page-type="s-page" data-page-name ="random-restored-page"&gt;
+                        &lt;div&gt;&lt;p class="icon-arrow-right"&gt;&lt;/p&gt;&lt;/div&gt;
+                        &lt;div&gt;&lt;p&gt;Tile's content slides right. Page opens from left&lt;/p&gt;&lt;/div&gt;
+                      &lt;/li&gt;
+                      &lt;li class="tile tile-small last tile-3" data-page-type="r-page" data-page-name="random-r-page"&gt;
+                        &lt;p class="icon-calendar-alt-fill"&gt;&lt;/p&gt;
+                      &lt;/li&gt;
+                      &lt;li class="tile tile-big tile-4" data-page-type="r-page" data-page-name="random-r-page"&gt;
+                        &lt;figure&gt;
+                          &lt;img src="images/blue.jpg" /&gt;
+                          &lt;figcaption class="tile-caption caption-left"&gt;Slide-out Caption from left&lt;/figcaption&gt;
+                        &lt;/figure&gt;
+                      &lt;/li&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="col2 clearfix"&gt;
+                      &lt;li class="tile tile-big tile-5" data-page-type="r-page" data-page-name="random-r-page"&gt;
+                        &lt;div&gt;&lt;p&gt;&lt;span class="icon-cloudy"&gt;&lt;/span&gt;Weather&lt;/p&gt;&lt;/div&gt;
+                      &lt;/li&gt;
+                      &lt;li class="tile tile-big tile-6 slideTextLeft" data-page-type="r-page" data-page-name="random-r-page"&gt;
+                        &lt;div&gt;&lt;p&gt;&lt;span class="icon-skype"&gt;&lt;/span&gt;Skype&lt;/p&gt;&lt;/div&gt;
+                        &lt;div&gt;&lt;p&gt;Make a Call&lt;/p&gt;&lt;/div&gt;
+                      &lt;/li&gt;
+                      &lt;!--Tiles with a 3D effect should have the following structure:
+                          1) a container inside the tile with class of .faces
+                          2) 2 figure elements, one with class .front and the other with class .back--&gt;
+                      &lt;li class="tile tile-small tile-7 rotate3d rotate3dX" data-page-type="r-page" data-page-name="random-r-page"&gt;
+                        &lt;div class="faces"&gt;
+                          &lt;div class="front"&gt;&lt;span class="icon-picassa"&gt;&lt;/span&gt;&lt;/div&gt;
+                          &lt;div class="back"&gt;&lt;p&gt;Launch Picassa&lt;/p&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/li&gt;
+                      &lt;li class="tile tile-small last tile-8 rotate3d rotate3dY" data-page-type="r-page" data-page-name="random-r-page"&gt;
+                        &lt;div class="faces"&gt;
+                          &lt;div class="front"&gt;&lt;span class="icon-instagram"&gt;&lt;/span&gt;&lt;/div&gt;
+                          &lt;div class="back"&gt;&lt;p&gt;Launch Instagram&lt;/p&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/li&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="col3 clearfix"&gt;      
+                      &lt;li class="tile tile-2xbig tile-9" data-page-type="custom-page" data-page-name="random-r-page"&gt;
+                        &lt;figure&gt;
+                          &lt;img src="images/summer.jpg" /&gt;
+                          &lt;figcaption class="tile-caption caption-bottom"&gt;Fixed Caption: Some Subtitle or Tile Description Goes Here with some kinda link or anything
+                          &lt;/figure&gt;
+                      &lt;/li&gt;
+                      &lt;li class="tile tile-big tile-10" data-page-type="s-page" data-page-name="custom-page"&gt;
+                        &lt;div&gt;&lt;p&gt;Windows-8-like Animations with CSS3 &amp; jQuery &copy; Sara Soueidan. Licensed under MIT.&lt;/p&gt;&lt;/div&gt;
+                      &lt;/li&gt;
+                    &lt;/div&gt;
+                  &lt;/ul&gt;
+                &lt;/div&gt;&lt;!--end dashboard--&gt;
+              &lt;/div&gt;
+          </pre>
+
+<p>The icon font I'm using is from <strong>Icomoon</strong>.</p>
+
+<p>What will happen is that the Javascript will get the name and type of page to be opened when a tile is clicked, and then, according to the type of the page, it will apply specific class names to the page (whose name we have also retrieved from the <code>data-page-name</code> attribute) to open it with the specified type of animation for each class applied.</p>
+
+### The CSS
+
+<p class="note">Please note that I'm taking a mobile-first approach to the styles, which we'll then make responsive in the media queries section.</p>
+
+<p>First, the styles for the demo wrapper, the container in which the whole demo will be contained. We'll define general styles, and make sure to set a <code>perspective</code> to activate the 3D space, otherwise, the whole demo will look flat and two dimensional.</p>
+
+<pre class="brush:css;">
+            .demo-wrapper {
+              padding: 2em .5em;
+              width: 100%;
+              height:100%;
+              perspective: 3300px;
+              position: relative;
+            }
+          </pre>
+
+<p>Now let's start with the dashboard styles and animations.</p>
+
+<p>The first animation applied to the dashboard is fired when the page loads. The dashboard is initially hidden and translated to the right of the screen, and fades and translates in to position on page load.</p>
+
+<pre class="brush:css">
+            .dashboard {
+              margin: 0 auto;
+              width: 100%;
+              padding: 1em;
+              transform: translateX(200px);
+              opacity:0;
+              animation: start 1s ease-out forwards;
+            }
+            @keyframes start{
+              0%{
+                transform: translateX(200px);
+                opacity:0;
+              }
+              50%{
+                opacity:1;
+              }
+              100%{
+                transform: translateX(0);
+                opacity:1;
+              }
+            }
+          </pre>
+<p>The dashboard also fades into the view and fades back when a tile is clicked. Once a tile is clicked, the dashboard translates back along the z-axis, decreases in size, and fades its opacity gradually till it becomes 0. And when an opened page is closed, the dashboard fades back into the view.</p>
+
+<p>The three columns in the dashboard fade in one after the other, with a slight delay between them. When a page is closed, a class name is added to each column (via Javascript), and each of these classes calls the animation with a certain delay.</p>
+
+<p>Here are the classes and the animations applied to the dashboard upon clicking the tiles and closing the pages:</p>
+
+<pre class="brush:css;">
+            .fadeOutback{
+             animation: fadeOutBack 0.3s ease-out 1 normal forwards;
+            }
+            .fadeInForward-1, .fadeInForward-2, .fadeInForward-3 {
+              /*remember: in the second animation u have to set the final values reached by the first one*/
+              opacity:0;
+              transform: translateZ(-5em) scale(0.75);
+              animation: fadeInForward .5s cubic-bezier(.03,.93,.43,.77) .4s normal forwards;
+            }
+        
+            .fadeInForward-2{
+              animation-delay: .55s;
+            }
+            .fadeInForward-3{
+              animation-delay: .7s;
+            }
+        
+            @keyframes fadeOutBack{
+              0% {transform: translateX(-2em) scale(1); opacity:1;}
+              70% {transform: translateZ(-5em) scale(0.6); opacity:0.5;}
+              95% {transform: translateZ(-5em) scale(0.6); opacity:0.5;}
+              100% {transform: translateZ(-5em) scale(0); opacity:0;}
+            }
+            @keyframes fadeInForward{
+              0% {transform: translateZ(-5em) scale(0); opacity:0;}
+              100% {transform: translateZ(0) scale(1); opacity:1;}
+            }
+          </pre> 
+<p>Now we're going to style the pages.</p>
+
+<pre class="brush:css">
+            .r-page {
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              font-size: 2em;
+              font-weight: 300;
+              position: absolute;
+              right: 0;
+              top: 0;
+              left:0;
+              bottom:0;
+              opacity: 0;
+              color: white;
+              z-index: 10;
+              padding:10px;
+              transform-origin: 100% 0%;
+              transform: rotateY(-90deg) translateZ(5em)
+            }
+
+            .s-page {
+              color: white;
+              z-index: 10;
+              text-align: center;
+              font-size: 2em;
+              font-weight: 300;
+            }
+            .page-content{
+              overflow-y:auto;
+              max-height:100%;
+              font-size:.6em;
+              padding:.6em;
+              text-align:left;
+            }
+
+            .s-page, .r-page{
+              background-color: white;
+              color:black;
+            }
+
+            .page-title {
+              margin: .25em 0;
+              font-weight: 100;
+              font-size: 3em;
+              text-align:center;
+            }
+
+            .close-button {
+              font-size: 1.5em;
+              width: 1em;
+              height: 1em;
+              position: absolute;
+              top: .75em;
+              right: .75em;
+              cursor: pointer;
+              line-height: .8em;
+              text-align: center
+            }
+
+          </pre>
+<p>I've set the original position of each <code>r-page</code> in the 3D space by first rotating it about the y-axis (the vertical axis), then I moved the page 5em to the left of the screen by using <code>translateZ</code>. Always remember: when u transform an element in 3D, you transform its coordinate system along with it. What I wanted to do is move the page 5em to the left of the screen, but instead of using <code>translateX</code> I used <code>translateZ</code>, because after the first tranformation (rotation about y axis), the coordinate system was also rotated, so now the z-axis points towards the left, and the x-axis is pointing towards you, the viewer.</p>
+
+<p>All the pages, except the </code>s-page</code> app page, have the same initial position in the 3D space. The <code>s-page</code>s, on the other hand, are positioned -150% left of the screen off canvas, so that they slide into view when their animation is fired.</p>
+
+<p>
+Once the tile for each page is clicked, a corresponding class is added (via javascript) to the page that will open, and each class calls for a certain animation. So, each page will get a class name that will define the 3D effect for the page.
+</p>
+
+<p>These are the class names that trigger the opening and closing of the pages, along with the animations defined for each class.</p>
+
+<pre class="brush:css;">
+            /* opens the r-page type pages*/
+            .openpage{ 
+              animation: rotatePageInFromRight 1s cubic-bezier(.66,.04,.36,1.03) 1 normal forwards;
+            }
+            /* closes the r-page type pages */
+            .slidePageLeft{
+              transform: rotateY(0) translateZ(0) ; opacity:1;
+              animation:slidePageLeft .8s ease-out 1 normal forwards;
+            }
+            /* opens the s-page type pages */
+            .slidePageInFromLeft{
+              animation: slidePageInFromLeft .8s cubic-bezier(.01,1,.22,.99) 1 0.25s normal forwards;
+            }
+            /* closes the s-page type pages*/
+            .slidePageBackLeft{
+              opacity:1; 
+              left:0;
+              animation: slidePageBackLeft .8s ease-out 1 normal forwards;
+            }
+          </pre>
+<p>I'm using the <code>animation</code> <a href="http://www.w3.org/TR/css3-animations/#animation-shorthand-property">shorthand property</a> here. The last value <code>forwards</code> corresponds to the <code>animation-fill-mode</code> property, which must be set to <code>forwards</code>, otherwise the page will get back to its initial "closed" position after the animation is over. So, in order to keep the page open, and be able to create sequential animations, the element has to stay in the final state defined by the first animation, and from there start the second animation.</p>
+
+<p>These are the animations for the classes applied to the pages:</p>
+
+<pre class="brush:css;">
+          @keyframes rotatePageInFromRight{
+            0% {transform:rotateY(-90deg) translateZ(5em);opacity:0}
+            30% {opacity:1}
+            100% {transform: rotateY(0deg) translateZ(0) ; opacity:1}
+          }
+        
+          /*When the close-button is clicked, the page slides to the left*/
+          /*note that the start of the second animation is the same state as the
+          end of the previous one*/
+        
+          @keyframes slidePageLeft{
+            0% {left:0; transform: rotateY(0deg) translateZ(0) ; opacity:1}
+            70% {opacity:1;}
+            100% {opacity:0; left:-150%; transform: rotateY(0deg)}
+          }
+          @keyframes slidePageInFromLeft{
+            0% {opacity:0; }
+            30% {opacity:1}
+            100% {opacity:1; left:0;}
+          }
+          @keyframes slidePageBackLeft{
+            0% {opacity:1; left:0; transform: scale(0.95);}
+            10% {transform: scale(0.9);}
+            70% {opacity:1;}
+            100% {opacity:0; left:-150%;}
+          }
+          </pre>
+<p>Last but not least we'll style the dashboard tiles and define the transitions and animations applied to them when they are hovered.</p>
+
+<p>General styles defining the size of the tiles:</p>
+
+<pre class="brush:css;">
+            .tile{
+              float: left;
+              margin: 0 auto 1%;
+              color: white;
+              font-size: 1.3em;
+              text-align: center;
+              height: 8em;
+              font-weight: 300;
+              overflow: hidden;
+              cursor: pointer;
+              position:relative;
+              background-color: #fff;
+              color: #333;
+              position:relative;
+              transition: background-color 0.2s ease-out
+            }
+            .tile-2xbig{
+              height:16.15em;
+              width:100%;
+            }
+            .tile-big {
+              width: 100%
+            }
+            .tile-small {
+              width: 49%;
+              margin-right: 2%
+            }
+            .tile-small.last {
+              margin-right: 0
+            }
+          </pre>
+<p>A couple of tiles contain an image along with an image caption. These tiles will get a class <code>fig-tile</code> to determine their type in the Javascript code. The colors used for the text and background of the corresponding page will be retrieved from the colors of the caption, so don't forget to define them.The caption can be either fixed, or it can slide in when the tile is hovered:</p>
+
+<pre class="brush:css;">
+            .tile-caption{
+              position:absolute;
+              z-index:1;
+              background-color: #455962;
+              color:#fff;
+              font-size:1em;
+              padding:1em;
+              text-align: left;
+            }
+            .caption-bottom{
+              left:0;
+              bottom:0;
+              right:0;
+              height:40%;
+            }
+            .caption-left{
+              left:-100%;
+              top:0;
+              bottom:0;
+              width:40%;
+              transition: left .3s linear;
+            }
+            .tile:hover .caption-left{
+              left:0;
+            }
+          </pre>
+<p>Regular tiles, with no special kind of animation, will change their background and text color on hover. In order to make sure the text is vertically centered in each tile, each one will contain a <code>div</code> with a paragraph containing the text. We'll use the table-cell display property to center this text vertically.</p>
+
+<pre class="brush:css;">
+            .tile div{
+              position:absolute;
+              top:0; left:0; right:0; bottom:0;
+              width:100%;
+              height:100%;
+              text-align:center;
+              display:table;
+              padding:0 1em;
+              transition: all .3s ease;
+            }
+            .tile div p{
+              display:table-cell;
+              vertical-align:middle;
+            }
+          </pre>
+<p>I'll skip the general styles of the tiles for sake of brevity, but make sure you set a background and text color on all tiles, even the ones that will be covered by an image, because these colors will be retrieved via Javascript and set as the colors for the corresponding page of this tile. Let's move on to the animations and transitions on the tiles.</p>
+
+<p>Tiles with text sliding inside of them will contain two <code>div</code>s, each div will be like a "face" or a block inside the tile. These <code>div</code>s are positioned absolutely, and moved on hover according to the direction of slide we want.</p>
+
+<p>For a tile's text to slide up on hover, we'll apply a class <code>slideTextUp</code>.</p>
+
+<pre class="brush:css;">
+            /* slide text inside tile up */
+            /* 2nd div will be positioned below the bottom of the tile*/
+            .slideTextUp div:nth-child(2){
+              top:100%;
+            }
+            /*both divs will be translated up on hover*/
+            .slideTextUp:hover div{
+              transform: translateY(-100%);
+            }
+            .tile-1 p{
+              font-size:1.3em;
+            }
+          </pre>
+
+<p>Similarly, tiles with text sliding to the right and left, will get class names <code>slideTextLeft</code> and <code>slideTextRight</code>, with a similar structure as the above tile.</p>
+
+<pre class="brush:css;">
+            /* slide text inside tile to the right*/
+            .slideTextRight div:first-child{
+              left:-100%;
+            }
+            .slideTextRight:hover div{
+              transform: translateX(100%);
+            } 
+
+            /* slide text inside tile to the left */
+            .slideTextLeft div:nth-child(2){
+              left:100%;
+            }
+            .slideTextLeft:hover div{
+              transform: translateX(-100%);
+            } 
+          </pre>
+<p>A couple tiles have a different hover effect, they rotate to reveal the back face of the tile. This effect is a very simple and basic "card flip" effect. I won't get into the details of this effect, but if you're new to this, you can read more about it in <a href="http://desandro.github.io/3dtransforms/docs/card-flip.html">this excellent tutorial</a> by David De Sandro.</p>
+
+<p>For this flipping effect, apply a <code>rotate3d</code> class to the tile you want to flip. For a card with a vertical flip we'll add a class <code>rotate3dY</code>, and for a horizontal flip we'll apply a class <code>rotate3dX</code> (in addition to the <code>rotate3d</code> class), and we'll apply the following styles: </p>
+
+<pre class="brush:css;">
+            /* rotate tile in 3D*/
+            .rotate3d{
+              /* add a perspective to the tile to activate 3d space inside it*/
+              perspective: 800px;
+              overflow: visible;
+            }
+            .faces{
+              /* preserve the 3d space in the container wrapping the two "faces" and define a transition */
+              transform-style: preserve-3d;
+              transition: transform 1s;
+            }
+            .faces div {
+              /* position faces on top of each other */
+              display: block;
+              position: absolute;
+              top:0; left:0; right:0; bottom:0;
+              width: 100%;
+              height: 100%;
+              /* hide backface visibility so that the back of the face is hidden when it's rotated */
+              backface-visibility: hidden;
+            }
+          </pre>
+<p>We'll rotate one of the faces in the tiles so that the two faces are back to back.</p>
+
+<pre class="brush:css;">
+            .rotate3dY .back{
+              transform: rotateY( 180deg );
+            }
+            .rotate3dX .back{
+              transform: rotateX( 180deg );
+            }
+          </pre>
+<p>And when the tile is hovered, the <code>.faces</code> <code>div</code> will be rotated to reveal the back face. </p>
+
+<pre class="brush:css;">
+            .rotate3dY:hover .faces:hover{
+                transform: rotateY( 180deg );
+            }
+            .rotate3dX:hover .faces:hover{
+                transform: rotateX( 180deg );
+            }
+          </pre>
+<p>For styles rotating in 3D, remember to set a background and text color for the <code>.front</code> face, so that these colors be retrieved and set to the tile's page when it is opened.<p>
+
+<p>And that's all for the styles and animations!</p>
+
+<p>Now let's define responsive styles for the dashboard. Dashboard columns are initially full-width on small screens (remember we're starting mobile-first), and they will be floated next to each other on big screens.</p>
+
+<pre class="brush:css;">
+            .col1,
+            .col2,
+            .col3 {
+              width: 99%;
+              margin: 1em auto
+            }
+            @media screen and (min-width: 43.75em) {
+              .col1,
+              .col2,
+              .col3 {
+                float: left;
+                margin-right: 1%;
+                width: 49%
+              }
+              .page-title{
+                font-size:2.5em;
+              }
+              .page-content{
+                font-size:1em;
+              }
+              .close-button{
+                font-size:2em;
+              }
+            }
+
+            @media screen and (min-width: 64em) {
+              .col1,
+              .col2,
+              .col3 {
+                float: left;
+                margin-right: .5%;
+                width: 31%
+              }
+
+              .col3 {
+                margin-right: 0
+              }
+
+              .col1 {
+                margin-left: 2em
+              }
+              .page-title{
+                font-size:3.5em;
+              }
+            }
+          </pre>
+
+### The Javascript
+
+<p>All click events will be handled wtih Javascript. I'll be using jQuery for this example. Event handlers are going to be set on each of the dashboard tiles, and when a click event is detected, we're going to retrieve the name and type of the corresponding page from the <code>data-page-type</code> and <code>data-page-name</code> attributes, and use these to open the page.</p>
+
+<p>Other click events will be handled when clicking on the close button in each page. The close button for each page type will apply the suitable class names to close this page type.</p>
+
+<p>Additionally, in order to give each page the same background color and text color as its corresponding tile, we will first loop through the tiles, retrieve its colors, and then applies it to its corresponsing page. If a tile has a <code>rotate3d</code> class, it looks for the background-color of the front "face" of the tile, and applies that to the page.</p>
+
+<pre class="brush:javascript;">
+            (function(){
+                //get the background-color for each tile and apply it as background color for the cooresponding screen
+                $('.tile').each(function(){
+                    var $this= $(this),
+                        page = $this.data('page-name'),
+                        bgcolor = $this.css('background-color'),
+                        textColor = $this.css('color');
+                    //if the tile rotates, we'll use the colors of the front face
+                        if($this.hasClass('rotate3d')) {
+                          frontface = $this.find('.front');
+                          bgcolor = frontface.css('background-color');
+                          textColor = frontface.css('color');
+                        }
+                    //if the tile has an image and a caption, we'll use the caption styles
+                        if($this.hasClass('fig-tile')) {
+                          caption = $this.find('figcaption');
+                          bgcolor = caption.css('background-color');
+                          textColor = caption.css('color');
+                        }
+
+                    $this.on('click',function(){
+                      $('.'+page).css({'background-color': bgcolor, 'color': textColor})
+                                 .find('.close-button').css({'background-color': textColor, 'color': bgcolor});
+                    });
+                });
+
+                function showDashBoard(){
+                  for(var i = 1; i <= 3; i++) {
+                    $('.col'+i).each(function(){
+                        $(this).addClass('fadeInForward-'+i).removeClass('fadeOutback');
+                    });
+                  }
+                }
+
+                function fadeDashBoard(){
+                  for(var i = 1; i <= 3; i++) {
+                    $('.col'+i).addClass('fadeOutback').removeClass('fadeInForward-'+i);
+                  }
+                }
+              
+                
+              //listen for when a tile is clicked
+              //retrieve the type of page it opens from its data attribute
+              //based on the type of page, add corresponding class to page and fade the dashboard
+              $('.tile').each(function(){
+                var $this= $(this),
+                    pageType = $this.data('page-type'),
+                    page = $this.data('page-name');
+                    
+                $this.on('click',function(){
+                  if(pageType === "s-page"){
+                      fadeDashBoard();
+                      $('.'+page).addClass('slidePageInFromLeft').removeClass('slidePageBackLeft');
+                    }
+                    else{
+                      $('.'+page).addClass('openpage');
+                      fadeDashBoard();
+                    }
+                });
+              });
+
+              //when a close button is clicked:
+              //close the page
+              //wait till the page is closed and fade dashboard back in
+              $('.r-close-button').click(function(){
+                  $(this).parent().addClass('slidePageLeft')
+                      .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+                            $(this).removeClass('slidePageLeft').removeClass('openpage');
+                          });
+                  showDashBoard();
+              });
+              $('.s-close-button').click(function(){
+                  $(this).parent().removeClass('slidePageInFromLeft').addClass('slidePageBackLeft');
+                  showDashBoard();
+              });
+
+            })();
+          </pre>
+<p>And that's it!<br/> I hope you enjoyed this tutorial and found it useful! :)</p>
+
+
+
+

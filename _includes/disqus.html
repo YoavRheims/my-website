@@ -1,0 +1,21 @@
+<div id="comments" class="comments-area" style="margin-top: 3em;">
+    <button role="button" type="button" aria-label="Show Comments" class="show-comments-button">Show Comments / Add a Comment</button>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+  (function () {
+
+      'use strict';
+
+      var loadDisqus = function () {
+          var dsq = document.createElement('script');
+          dsq.async = dsq.src = '//sarasoueidan.disqus.com/embed.js';
+          document.getElementsByTagName('head')[0].appendChild(dsq);
+          this.style.display = 'none';
+      };
+
+      var button = document.querySelector('.show-comments-button');
+      button.onclick = loadDisqus;
+
+  })();
+</script>

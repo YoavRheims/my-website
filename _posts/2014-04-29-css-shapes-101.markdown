@@ -1,0 +1,8 @@
+---
+layout: none
+title: "CSS Shapes 101"
+image: ""
+external:
+  host: A List Apart
+  url: http://alistapart.com/article/css-shapes-101
+---

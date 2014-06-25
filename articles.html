@@ -1,0 +1,28 @@
+---
+layout: default
+title: Articles &ndash; Sara Soueidan &ndash; Freelance Front-end Web Developer
+name: articles
+---
+<div class="full-width">
+    <div class="wrapper clearfix">
+      <aside class="left-sidebar">
+        <h1>I Wrote:</h1>
+      </aside>
+        <section class="main clearfix" role="main">
+
+            {% for post in site.posts %}
+              <article class="post">
+                  <h2 class="post-title">
+                      {% if post.external %}
+                        <a href="{{ post.external.url }}">{{ post.title }}</a>
+                      {% else %}
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                      {% endif %}
+                  </h2>
+                  <p>{{ post.date | date_to_long_string }} {% if post.external %} &mdash; <strong>{{ post.external.host }}</strong> {% endif %}</p>
+              </article>
+            {% endfor %}
+
+        </section>
+    </div>
+</div>

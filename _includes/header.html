@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>  <html class="ie ie6 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 7]>     <html class="ie ie7 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 8]>     <html class="ie ie8 lte9 lte8"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if gt IE 9]>  <html> <![endif]-->
+<!--[if !IE]><!--> <html>             <!--<![endif]-->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    <meta name="language" content="en" />
+    <meta name="description" content="Freelance Front-End Web Developer - Lebanon" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="keywords" content="freelancer, front-end web developer, HTML5, CSS3, Lebanon" />  
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!--[if lt IE 9]>
+      <script src="http://css3-mediaqueries-js.googlecode.com/files/css3-mediaqueries.js"></script>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Page Speed Insights requires that Google Fonts be loaded inline for faster pages -->
+    <style>
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: normal;
+          font-weight: 300;
+          src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGNbE_oMaV8t2eFeISPpzbdE.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: normal;
+          font-weight: 700;
+          src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          font-weight: 300;
+          src: local('Source Sans Pro Light Italic'), local('SourceSansPro-LightIt'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/fpTVHK8qsXbIeTHTrnQH6GGomRtBD2u8FwSY4jjlmeA.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          font-weight: 400;
+          src: local('Source Sans Pro Italic'), local('SourceSansPro-It'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/M2Jd71oPJhLKp0zdtTvoMzNrcjQuD0pTu1za2FULaMs.woff) format('woff');
+        }
+        @font-face {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          font-weight: 700;
+          src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldIt'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/fpTVHK8qsXbIeTHTrnQH6Nog-We9VNve39Jr4Vs_aDc.woff) format('woff');
+        }
+    </style>
+    <!-- Google web fonts work in IE only this way: each font in its own link -->
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300" /> 
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400" /> 
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:600" /> 
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:700italic" /> 
+    <![endif]-->
+    <link rel="stylesheet" href="{{ site.url }}/css/screen.css" />
+  </head>
+  <body>
+    <header role="banner" class="clearfix main-header">
+      <div class="wrapper clearfix">
+        <a href="http://sarasoueidan.com/index.html" class="logo">
+          <img src="{{ site.url }}/images/logo.png" alt="Sara Soueidan" />
+        </a>
+        <nav role="navigation" class="main-nav clearfix">
+          <ul class="clearfix">
+            <li><a href="{{ site.url }}/index.html" {% if page.name == 'home' %} class="active" {% endif %} >Home</a></li><!--
+            --><li><a href="{{ site.url }}/articles.html" {% if page.name == 'articles' %} class="active" {% endif %} >Articles</a></li><!--
+            --><li><a href="{{ site.url }}/about.html" {% if page.name == 'about' %} class="active" {% endif %} >About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header> 
+

@@ -1,0 +1,38 @@
+---
+layout: post
+title:  "Styling &amp; Animating Scalable Vector Graphics with CSS &ndash; CSSConf 2014, Florida"
+image: "talk-sketch.jpg"
+---
+<p class="size-2x">
+  Four days ago, on May 27<sup>th</sup>, I spoke at <a href="http://2014.cssconf.com/">CSSConf</a>. It was my first speaking experience
+  at a web design conference. It was a great one! I talked about CSS and SVG, both of which I love.
+</p>
+            
+###Talk Slides and Video
+            
+<div class="iframe-container" style="padding-top: 59.27083%; height: 0; position: relative; width: 100%;">
+<iframe src="https://docs.google.com/presentation/d/1Iuvf3saPCJepVJBDNNDSmSsA0_rwtRYehSmmSSLYFVQ/embed?start=false&loop=false&delayms=3000" frameborder="0" style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" ></iframe>
+</div>
+
+<p>
+    <em>Talk video is still not ready. I will update this article with the video as soon as it is available.</em>
+</p>
+
+<p class="note">
+  Sketch notes in the featured image are by <a href="http://twitter.com/bysusanlin">Susan Lin</a>. Check <a href="http://bysusanlin.com/">her website</a> out for more sketch notes from CSSConf and other conferences.
+</p>
+
+###Before, During, and After My Talk
+
+I've <a href="CSSConf2014-Twitter-Feedback.htm">"storified" a list of so many tweets</a> I got from the amazingly supportive community before,nduring, and after my talk, and after sharing the slides. The following grid shows just a few of those tweets. Very happy that everyone found the slides useful, and very thankful for the amazing feedback I got.
+
+<div class="storify">
+<iframe src="//storify.com/SaraSoueidan/cssconf-2014-florida/embed?header=false&template=grid" width="100%" height=800 frameborder=no allowtransparency=true></iframe>
+<script src="//storify.com/SaraSoueidan/cssconf-2014-florida.js?header=false&template=grid"></script>
+<noscript>[<a href="//storify.com/SaraSoueidan/cssconf-2014-florida" target="_blank">View the story "CSSConf 2014 - Florida" on Storify</a>]</noscript>
+</div>
+
+<!-- ###A Little Bit About My Experience
+
+I've had the pleasure to write a bit about my experience, including tips and advice for first-time speakers such as myself, on the <a href="http://2014.cssconf.eu">CSSConfEU</a> blog. You can read the post <a href="">here</a>. -->
+  
