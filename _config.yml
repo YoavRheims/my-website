@@ -1,3 +1,6 @@
+sorce: .
+destination: ./_site
+
 name: Sara Soueidan
 markdown: redcarpet
 pygments: false
